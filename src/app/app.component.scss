@@ -1,0 +1,32 @@
+
+@font-face {
+  font-family: lunchds;
+  src: url("../assets/fonts/Lunchds/lunchds.ttf") format("opentype");
+}
+
+$card-width: 30%;
+$card-background: #666;
+$card-border-radius: 7px;
+$card-box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+$card-transition-duration: 0.3s;
+$hover-box-shadow: 0 8px 12px rgba(0, 0, 0, 0.5);
+$font-stack: lunchds;
+$primary-color: #333;
+$bgcolor: #777;
+
+.xcard {
+  font: 100% $font-stack;
+  color: $primary-color;
+  width: $card-width;
+  background-color: $card-background;
+  border-radius: $card-border-radius;
+  box-shadow: $card-box-shadow;
+  transition: box-shadow $card-transition-duration;
+  .xcard-content {
+    padding: 20px;
+  }
+  &:hover {
+    background-color: $bgcolor;
+    box-shadow: $hover-box-shadow;
+  }
+}
