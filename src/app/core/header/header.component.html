@@ -1,11 +1,40 @@
-<nav>
-    <app-rectbutton>
-        <a routerLink="home">home</a>
-    </app-rectbutton>
-    <app-rectbutton>
-        <a routerLink="char">sht</a>
-    </app-rectbutton>
-    <app-rectbutton>
-        <a routerLink="login">login</a>
-    </app-rectbutton>
-</nav>
+<div fxHide.lt-md fxShow class="nav navbar">
+    <div *ngIf="auth.user$ | async as user" class="topbut" [routerLinkActive]="['activeroute']" #bla="routerLinkActive" routerLink="main">
+        <span>{{bla.isActive?'>':''}}Strona Główna</span>
+    </div>
+    <div class="topbut" [routerLinkActive]="['activeroute']" #ala="routerLinkActive" routerLink="home">
+        <span>{{ala.isActive?'>':''}}Bastion</span>
+    </div>
+    <div *ngIf="auth.user$ | async as user" class="topbut" [routerLinkActive]="['activeroute']" #cla="routerLinkActive" routerLink="char">
+        <span>{{cla.isActive?'>':''}}Karta Postaci</span>
+    </div>
+    <ng-container  class='topbut' *ngIf="auth.isAuthenticated$ | async; else loggedOut">
+        <button fxHide.lt-md fxShow class='lilo' (click)="auth.logout({ logoutParams: { returnTo: document.location.origin } })">
+          Wyjdź
+        </button>
+      </ng-container>
+      <ng-template  class='topbut' #loggedOut>
+        <button class='lilo' (click)="auth.loginWithRedirect()">Wejdź</button>
+      </ng-template>
+</div>
+<div fxShow.lt-md fxHide class="nav navbar smol">
+    <div *ngIf="auth.user$ | async as user" class="topbut" [routerLinkActive]="['activeroute']" #bla="routerLinkActive" routerLink="main">
+        <span>{{bla.isActive?'>':''}}H</span>
+    </div>
+    <div class="topbut" [routerLinkActive]="['activeroute']" #ala="routerLinkActive" routerLink="home">
+        <span>{{ala.isActive?'>':''}}B</span>
+    </div>
+    <div *ngIf="auth.user$ | async as user" class="topbut" [routerLinkActive]="['activeroute']" #cla="routerLinkActive" routerLink="char">
+        <span>{{cla.isActive?'>':''}}KP</span>
+    </div>
+    <ng-container  class='topbut' *ngIf="auth.isAuthenticated$ | async; else loggedOut">
+        <button class='lilo' (click)="auth.logout({ logoutParams: { returnTo: document.location.origin } })">
+          OFF
+        </button>
+      </ng-container>
+      <ng-template  class='topbut' #loggedOut>
+        <button class='lilo' (click)="auth.loginWithRedirect()">Wejdź</button>
+      </ng-template>
+</div>
+
+

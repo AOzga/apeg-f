@@ -1,16 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { GlitchtextComponent } from './glitchtext/glitchtext.component';
+import { SpinnerComponent } from './spinner/spinner.component';
+import { ProgressdirectiveDirective } from './progressdirective.directive';
 
 
 
 @NgModule({
   declarations: [
-    GlitchtextComponent
+    SpinnerComponent,
+    ProgressdirectiveDirective
   ],
   imports: [
     CommonModule
   ],
-  exports:[GlitchtextComponent]
+  exports:[SpinnerComponent, ProgressdirectiveDirective]
 })
 export class SharedModule { }

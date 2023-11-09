@@ -1,0 +1,52 @@
+.contentcontainer{
+    display:flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    color:gray;
+    line-height:1.2;
+}
+.storycontent{
+    background-color: rgba(255,255,255,0.03);
+    width:60vw;
+    height:750vh;
+    margin:5px;
+    padding:5px;
+}
+.helpercontent{
+    position: sticky;
+    color:gray;
+    top: 150px;
+    background-color: rgba(255, 255, 255, 0.03);
+    width: 40vw;
+    height: auto;
+    margin: 5px;
+    padding: 5px;
+}
+
+.flavortext{
+    font-style:oblique;
+}
+
+.explainer{
+    color:rgba(255, 255, 133, 0.4);
+    animation: pulsar 2s infinite;
+}
+.explainer:hover{
+    color:goldenrod;
+    animation:none;
+}
+.smolunit{
+    width:auto;
+}
+
+@keyframes pulsar {
+    0% { 
+        color:rgba(255, 255, 133, 0.4);
+    }
+    50% { 
+        color:rgba(255, 255, 133, 0.2);
+    }
+    100% { 
+        color:rgba(255, 255, 133, 0.4);
+    }
+}

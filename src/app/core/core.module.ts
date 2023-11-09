@@ -3,15 +3,17 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { RouterModule } from '@angular/router';
-import { RectbuttonComponent } from './header/rectbutton/rectbutton.component';
-
+import { SharedModule } from '../shared/shared.module';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 @NgModule({
-  declarations: [HeaderComponent,FooterComponent, RectbuttonComponent],
+  declarations: [HeaderComponent,FooterComponent],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    SharedModule,
+    FlexLayoutModule
   ],
   exports:[HeaderComponent,FooterComponent]
 })

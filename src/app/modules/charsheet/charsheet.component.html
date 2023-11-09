@@ -1,1 +1,136 @@
-<p>charsheet works!</p>
+<div @showyass *ngIf="playerchar.name" class="character-creation">
+  <div class="char-info">
+      <h1 class="char-name">{{ playerchar.name }} "{{ playerchar.nickname }}" [{{playerchar.levelmeta.level}}]</h1>
+      <h2>{{ playerchar.race.name }} {{ playerchar.class.name }}</h2>
+      <div class="char-health">
+        <p>Życie: {{ playerchar.health.curr }}/{{ playerchar.health.max }}</p>
+        <p>Doświadczenie: {{playerchar.levelmeta.exp}} / {{playerchar.levelmeta.nextlevel}}</p>
+      </div>
+      <div class="char-gold">
+        <p>Złoto: {{ playerchar.gold }}</p>
+      </div>
+      <div (click)="togglebio()"class="char-bio">
+        <p >{{ showbio?playerchar.bio:"klik"}}</p>
+      </div>
+      <div class = "pickstate">
+        <div class="statecomponent">
+          <img src="../../../assets/icons/Icon.1_01.png" class="stateimage" (click)="showdivname('stats')"> 
+          <span class="statename"> Atrybuty </span> 
+        </div>
+
+        <div class="statecomponent">
+          <img src="../../../assets/icons/Icon.1_02.png" class="stateimage" (click)="showdivname('quests')"> 
+          <span class="statename"> Zadania </span> 
+        </div>
+
+        <div class="statecomponent">
+          <img src="../../../assets/icons/Icon.1_03.png" class="stateimage" (click)="showdivname('inventory')"> 
+          <span class="statename"> Ekwipunek </span> 
+        </div>
+
+        <div class="statecomponent">
+          <img src="../../../assets/icons/Icon.1_04.png" class="stateimage" (click)="showdivname('skills')"> 
+          <span class="statename"> Umiejętności </span> 
+        </div>
+
+      </div>
+
+      
+
+
+  </div>
+  <div @showyass *ngIf="shownpane=='stats'" class="char-stats">
+    <h2>Atrybuty</h2>
+    <div class="abilityselector">
+      <span [class.activev] = "showstats"  (click)="sts( true)">Atrybuty</span>
+      <span [class.activev] = "!showstats" (click)="sts(false)">Statystyki</span>
+    </div>
+
+    <div @showyass *ngIf="showstats" class="atrybutyx">
+      <div  class="stat" *ngFor="let stat of playerchar.stats | keyvalue: returnZero">
+        <span [ngClass]="{'main-stat': stat.key === playerchar.class.mainstat, 'sub-stat': stat.key === playerchar.class.substat}">{{ (stat.key?stat.key:null | uppercase) || 'notloaded' }}: {{ stat.value?stat.value:null || 'notloaded'}}</span>
+        <button (click)="addPoint(stat.key)">+</button>
+        <button (click)="removepoint(stat.key)">-</button>
+      </div>
+    </div>
+
+    <div @showyass *ngIf="!showstats" class="statyx">
+      <div ngbTooltip="jajo" triggers="touchstart" ><img>Obrona fizyczna:</div>
+      <div><img>Obrona magiczna:</div>
+
+      <div><img>Obrażenia: </div>
+      <div><img>Kryt. szansa: </div>
+      <div><img>Kryt. obrażenia: </div>
+    </div>
+</div>
+  <div @showyass *ngIf="shownpane=='quests'" class="quest-list">
+      <h2>Zadania</h2>
+      <div *ngFor="let quest of playerchar.quests" [ngClass]="{'quest-done': quest.done, 'dark-quest': quest.darkquest}">
+          <span>{{ quest.name }}</span>
+      </div>
+  </div>
+  <div @showyass *ngIf="shownpane=='inventory'"  class="equipment">
+      <h2>Ekwipunek</h2>
+      <div class="equipment-slots">
+        <div class="slot">Broń: {{ playerchar.equipment.slots.weapon }} </div>
+        <div class="slot">Pomocnicza: {{ playerchar.equipment.slots.offhand }}</div>
+          <div class="slot">Głowa: {{ playerchar.equipment.slots.head }}</div>
+          <div class="slot">Ciało: {{ playerchar.equipment.slots.body }}</div>
+          <div class="slot">Nogi: {{ playerchar.equipment.slots.legs }}</div>
+          <div class="slot">Pierścień 1: {{ playerchar.equipment.slots.ring1 }}</div>
+          <div class="slot">Pierścień 2: {{ playerchar.equipment.slots.ring2 }}</div>
+      </div>
+      <div  class="inventory">
+          <h3>Inwentarz </h3 >
+          <ul>
+              <li *ngFor="let item of playerchar.equipment.bag">{{ item }}</li>
+          </ul>
+      </div>
+  </div>
+  <div @showyass *ngIf="shownpane=='skills'" class="abilities">
+      <h2>Umiejętności</h2>
+      <div class="abilityselector">
+        <span [class.activev] = "showactives"  (click)=" psv(true)">Aktyw.</span>
+        <span [class.activev] = "!showactives" (click)="psv(false)">Pasyw.</span>
+      </div>
+
+      <div @showyass *ngIf="showactives" class="active-abilities">
+        <ng-container *ngFor="let ability of playerchar.actives">
+            <div><img class="stateimage" src="/assets/icons/{{ability.img}}"><span>{{ability.name}}</span></div>
+        </ng-container>
+
+      </div>
+
+      <div @showyass *ngIf="!showactives" class="passive-abilities">
+        <ng-container *ngFor="let ability of playerchar.passives">
+          <div><img class="stateimage" src="../../../assets/icons/{{ability.img}}"><span>{{ability.name}} [{{ ability.proficiency }}]</span></div>
+        </ng-container>
+      </div>
+
+  </div>
+</div>
+<div class="no-char" *ngIf="!playerchar.name">
+  <p>{{pszczulka}}</p>
+  <form [formGroup]="playerForm" (ngSubmit)="onSubmit()">
+    <label for="name">Name:</label>
+    <input required type="text" id="name" formControlName="name">
+    
+    <label for="nickname">Nickname:</label>
+    <input required type="text" id="nickname" formControlName="nickname">
+    
+    <label for="race">Race:</label>
+    <select id="race" formControlName="race">
+      <option required *ngFor="let race of races" [value]="race.id | number">{{ race.name }}</option>
+    </select>
+    
+    <label for="characterClass">Class:</label>
+    <select id="characterClass" formControlName="characterClass">
+      <option required *ngFor="let characterClass of classes" [value]="characterClass.id | number">{{ characterClass.name }}</option>
+    </select>
+    
+    <label for="bio">Bio:</label>
+    <textarea id="bio" formControlName="bio"></textarea>
+    
+    <button type="submit">Submit</button>
+  </form>
+</div>

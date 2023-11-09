@@ -1,0 +1,247 @@
+
+$dark-background: #0a0a0a;
+$light-accent: #bbb;
+$medium-accent: #888;
+$highlight-color: #f4c430; 
+$success-color: #4CAF50;
+$error-color: #cc0000;
+
+h2{
+  text-align: center;
+  color: $highlight-color;
+}
+.disabled{
+  background-color: #cc0000;
+}
+.character-creation {
+    background: $dark-background;
+    color: $light-accent;
+  
+
+    .char-health, .char-gold {
+        margin: 10px 0;
+    }
+
+    .equipment {     
+        .equipment-slots {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+
+            .slot {
+                flex: 1 0 30%; // Adjust as needed for your layout
+                margin: 5px;
+                padding: 10px;
+                background: darken($dark-background, 10%);
+                border-radius: 4px;
+            }
+        }
+
+        .inventory {
+            ul {
+                list-style-type: none;
+                padding: 0;
+                margin: 0;
+
+                li {
+                    margin: 5px 0;
+                }
+            }
+        }
+    }
+
+    .abilities {
+        margin-top: 20px;
+
+        .active-abilities, .passive-abilities {
+            h3 {
+                font-size: 1.2em;
+            }
+
+            ul {
+                list-style-type: none;
+                padding: 0;
+                margin: 0;
+
+                li {
+                    margin: 5px 0;
+                }
+            }
+        }
+    }
+    .char-info {
+      border: 1px solid $medium-accent;
+      padding: 20px;
+      border-radius: 5px;
+      margin-bottom: 20px;
+  
+      .char-name {
+        color: $highlight-color;
+        text-align: center;
+      }
+  
+      
+  
+      .char-bio {
+        background: darken($dark-background, 5%);
+        padding: 10px;
+        border-radius: 4px;
+      }
+    }
+  
+    .quest-list {
+      h2 {
+        text-align: center;
+        color: $highlight-color;
+      }
+  
+      div {
+        padding: 10px;
+        margin: 5px 0;
+        background: darken($dark-background, 10%);
+        border-radius: 4px;
+        transition: background 0.3s;
+  
+        &.quest-done {
+          text-decoration: line-through;
+          color: $success-color;
+        }
+  
+        &.dark-quest {
+          color: $error-color;
+        }
+  
+        &:hover {
+          background: lighten($medium-accent, 10%);
+        }
+      }
+    }
+  }
+  .char-stats {
+    .stat {
+      padding: 10px;
+      margin: 5px 0;
+      background: darken($dark-background, 10%);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+    .main-stat {
+
+        color: rgba(0, 255, 55, 0.3);
+      }
+
+    .sub-stat {
+
+        color: rgba(0, 255, 242, 0.3);
+      }
+
+      button {
+        background: $medium-accent;
+        color: $dark-background;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background 0.3s;
+
+        &:hover {
+          background: $highlight-color;
+        }
+      }
+
+      span {
+        cursor: pointer;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+  .no-char {
+    text-align: center;
+    color: $error-color;
+    padding: 50px;
+    font-size: 1.5em;
+  }
+  
+  // Mixins and functions
+  @function color-modify($color, $amount) {
+    @if (lightness($color) > 50) {
+      @return darken($color, $amount);
+    } @else {
+      @return lighten($color, $amount);
+    }
+  }
+  
+  @mixin highlight($property, $color, $amount) {
+    #{$property}: color-modify($color, $amount);
+  }
+  
+  @each $stat in (str, agi, int, div, cns, cha, luk) {
+    .stat-#{$stat}:hover {
+      @include highlight(background-color, $highlight-color, 15%);
+    }
+  }
+
+.activev{
+  text-decoration: underline;
+}
+
+form {
+  max-width: 400px; /* Adjust the max-width as needed for your layout */
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f5f5f5;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Style form labels */
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+/* Style form inputs and selects */
+input[type="text"],
+input[type="password"],
+select,
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+button[type="submit"] {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 3px;
+}
+
+/* Style form controls on smaller screens */
+@media (max-width: 768px) {
+  form {
+    max-width: 100%;
+  }
+}
+
+.abilityselector{
+  display: flex;
+  flex-direction: space;
+  justify-content: space-around;
+  align-content:center;
+
+}
+.stateimage{
+  width:32px;
+  height:32px;
+}

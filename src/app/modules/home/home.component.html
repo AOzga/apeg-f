@@ -1,0 +1,56 @@
+<div class="contentcontainer">
+<div class="storycontent" ngClass.lt-md="smolunit">
+    <h1>Witaj w świecie <a class="explainer" (click)="setexplain('bastion')">Bastion</a></h1>
+    <p>Jest to spokojny świat, panują w nim prawa podobne co na planecie Ziemia, o ktorej oczywiście istoty,<br>
+    postaci oraz inne nadprzyrodzone albo nawet podprzyrodzone siły nie mają pojęcia,<br>
+    nawet nie wiem skąd mi przyszlo takie porownanie, ale jak już przyszlo, to pomyślałem, że się nim podziele.</p>
+
+    <p>Pewnie nie wiesz za dużo o historii tego miejsca, nie masz pojecia skad przyszedłeś<br>
+        lub przyszłaś i nie za bardzo wiesz dokąd idziesz lub po co istniejesz.
+    <br>Myśle, ze do jakiegokolwiek świata bys nie trafił mógłbyś zadać sobie podobne pytania. <br>No i nic by nie wynikło z rozważań na ten temat.</p>
+
+    <p>
+        Tutaj jest dokladnie identycznie, tylko z taką małą różnicą, że jeszcze nie istniejesz.<br>
+        Albo raczej jesteśmy poza czasem, jednocześnie przed i po twoim istnieniu.<br>
+        Jestesmy w miejscu, w ktorym możesz nie podejmować zadnej decyzji, <br>
+        lub podjać je wszystkie, a i tak wynik będzie taki sam. <br>
+        Wszystko juz było, wszystko jeszcze będzie i wszystko jest dokładnie w tym momencie.
+
+    </p>
+  
+    <p>Przed momentem twojego określenia "siebie", chciałbym Ci co nieco przyblizyc niektóre moce lub zasady,<br>
+    z ktorymi mogłeś sie minąć do tej pory, chociaż to by było całkiem dziwne, bo przecież jesteśmy też po twoim istnieniu.<br>
+    Amnezja czasowa? coś takiego
+    </p>
+    
+
+
+    <h1><a class="explainer" (click)="setexplain('magia')">Magia</a></h1>
+    
+    <p>Magia to całkiem tajemnicza siła która kieruje wieloma decyzjami natury, bogów, ludzi oraz innych istot które postanowiły oddychać tym okropnym powietrzem.</p>
+    <p>Magia jest niesamowicie potężnym narzędziem. Tak potężnym, że to TY możesz stać się jej narzędziem.</p>
+    <p>Jest to niesamowicie powszechna siła, a jednocześnie tak pożądana i tak szybko kończąca się, że ta dwulicowość powoduje dziwne kręcenie w stopach i wibracje w brzuchu.</p>
+    <p>No właśnie, JEST, ale w jakiej postaci, kiedy i jak z niej korzystać, to już sobie sam odkryjesz, albo ktoś inny, mniej tajemniczy Ci podpowie.</p>
+    <p>Nudno by było podawać wszystkie odpowiedzi na tacy, prawda?</p>
+
+
+    <h1><a class ="explainer" (click)="setexplain('swiat')">Świat</a></h1>
+
+    <p>Świat Bastionu jest rozległy, bogaty w cztery główne kontynenty lądowe oraz dwa kontynenty powietrzne.</p>
+    <p>Z racji tego, że to ja decyduje gdzie wylądujesz, opowiem Ci tylko o tym,
+         co Ciebie dotyczy, mianowicie Środkowy Kontynent Lądowy - <a class ="explainer" (click)="setexplain('prima')">Prima</a>,
+         graniczący powietrznie z Najmniejszym Kontynentem Powietrznym - <a class ="explainer" (click)="setexplain('eoria')">Eoria</a>.</p>
+
+
+</div>
+<div class="helpercontent" fxHide.lt-md="true">
+    <p (click)="setpreviousexplain()">"poprzednie"</p>
+    <h1 *ngIf="explanation_title">{{explanation_title}}</h1>
+    <h1 *ngIf="!explanation_title">kliknij w <p class="explainer" (click)="setexplain('zlote')">złote</p></h1>
+    <br>
+    <p>{{explanation}}</p>
+    <br>
+    <p class="flavortext">{{flavortext}}</p>
+</div>
+</div>
+
